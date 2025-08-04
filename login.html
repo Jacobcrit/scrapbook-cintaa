@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Daftar Scrapbook 💕</title>
+  <style>
+    body {
+      background: #fff0f6;
+      font-family: 'Comic Sans MS', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .register-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    h2 {
+      color: #f06292;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-box">
+    <h2>💗 Daftar Scrapbook</h2>
+    <input type="email" id="email" placeholder="Email kamu">
+    <input type="password" id="password" placeholder="Password rahasia">
+    <button onclick="register()">Daftar Sekarang!</button>
+    <p>Udah punya akun? <a href="login.html">Login yuk</a></p>
+  </div>
+
+  <script type="module">
+    import { auth } from './firebase.js';
+    import { db } from './firebase.js';
+    import {
+      createUserWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+    import {
+      doc,
+      setDoc
+    } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+    async function register() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Simpan ke Firestore
+        await setDoc(doc(db, "users", user.uid), {
+          email: user.email,
+          partner: null
+        });
+
+        alert("Berhasil daftar! Sekarang login yaaa 😚");
+        window.location.href = "login.html";
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  </script>
+</body>
+</html>

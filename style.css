@@ -1,0 +1,138 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(to bottom right, #ffe6f0, #ffe0f5);
+  color: #ff66a3;
+  text-align: center;
+}
+
+.judul {
+  font-size: 2rem;
+  margin-top: 20px;
+  color: #ff1493;
+  text-shadow: 2px 2px white;
+}
+
+.text-draw {
+  margin: 20px auto;
+  font-size: 1.2rem;
+  padding: 10px;
+  background: #fff0f5;
+  border: 2px dashed #ff99cc;
+  border-radius: 15px;
+  width: 80%;
+  box-shadow: 0 0 10px #ffc0cb;
+}
+
+.login-box {
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 0 20px #ffb6c1;
+}
+
+.login-box input {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ff66a3;
+  width: 80%;
+  font-size: 1rem;
+  outline: none;
+}
+
+.login-box button {
+  margin: 5px;
+  padding: 10px 20px;
+  background: #ff99cc;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.login-box button:hover {
+  background: #ff69b4;
+}
+
+.galeri {
+  margin-top: 30px;
+  padding: 10px;
+}
+#galeriFoto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 20px;
+}
+#galeriFoto img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #ffb6c1;
+}
+
+.linktree {
+  margin-top: 30px;
+}
+.link-buttons a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 15px;
+  background: #ff99cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #ff66a3;
+  transition: 0.3s;
+}
+.link-buttons a:hover {
+  background: #ff66a3;
+}
+
+.wa-chat {
+  margin-top: 20px;
+}
+.wa-chat a {
+  background: #25d366;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 10px #ccc;
+  transition: 0.3s;
+}
+.wa-chat a:hover {
+  background: #1ebea5;
+}
+
+.berita {
+  margin-top: 40px;
+}
+.berita a {
+  display: block;
+  margin: 5px auto;
+  color: #ff1493;
+  font-weight: bold;
+  text-decoration: none;
+}
+.berita a:hover {
+  text-decoration: underline;
+}
+
+/* Hilangkan blue touch / focus outline */
+button:focus, input:focus {
+  outline: none;
+}
+
+/* Responsive sedikit */
+@media screen and (max-width: 600px) {
+  .login-box, .text-draw {
+    width: 90%;
+  }
+}

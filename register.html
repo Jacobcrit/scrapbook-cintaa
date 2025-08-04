@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daftar Scrapbook 💕</title>
+  <style>
+    body {
+      background: #fff0f6;
+      font-family: 'Comic Sans MS', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .register-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: linear-gradient(to right, #ff85b2, #ffa6c9);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Comic Sans MS', cursive;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    h2 {
+      color: #f06292;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    a {
+      color: #ff69b4;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-box">
+    <h2>💗 Daftar Scrapbook</h2>
+    <input type="email" id="email" placeholder="Email kamu sayang">
+    <input type="password" id="password" placeholder="Password rahasia kita">
+    <button onclick="register()">Daftar Yuk! 💕</button>
+    <p>Udah punya akun? <a href="login.html">Login yuk</a></p>
+  </div>
+
+  <script type="module">
+    import { auth, db } from './firebase.js';
+    import {
+      createUserWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+    import {
+      doc, setDoc
+    } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+    async function register() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await setDoc(doc(db, "users", user.uid), {
+          email: user.email,
+          partner: null,
+          createdAt: new Date()
+        });
+
+        alert("Yeay daftar berhasil 💞 Sekarang login yuk sayangg~");
+        window.location.href = "login.html";
+      } catch (error) {
+        alert("Upss 😢 " + error.message);
+      }
+    }
+  </script>
+</body>
+</html>
